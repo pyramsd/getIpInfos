@@ -1,5 +1,14 @@
 #!/bin/bash
 
+check_tool(){
+if ! [ -x "$(command -v $1)" ]; then
+        echo -e "\e[31m[-] curl no instalado\e[0m"
+        exit 1
+fi
+}
+
+check_tool "curl"
+
 ip=""
 
 help(){
