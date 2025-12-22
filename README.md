@@ -2,7 +2,7 @@
 
 ### Requariments
 ```
-pip install tabulate
+pip install -r requirements.txt
 ```
 
 ### Ejecucion getIPTechInfo.py
