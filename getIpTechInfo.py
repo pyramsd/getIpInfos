@@ -2,7 +2,12 @@ import socket
 import struct
 import ipaddress
 import argparse
-from tabulate import tabulate
+try:
+    from tabulate import tabulate
+except ModuleNotFoundError:
+    print("Modulo 'tabulate' No encontrado")
+    print("Instalelo usando: pip install -r requirements.txt")
+    exit(1)
 import sys
 
 def mask(prefix) -> str:
@@ -61,14 +66,14 @@ def process_ip(ip: str) -> list:
             ip += "/24"
         else:
             print(f"Clase de IP desconocida o no válida: {ip}")
-            return None
+            return []
         
     try:
         network = ipaddress.IPv4Network(ip, strict=False)
         mymask = network.netmask
     except ValueError:
         print(f"Direccion IP no valida: {ip}")
-        return None
+        return []
 
     type_ip = obteinTypeIp(ip)
     class_ip = obteinIpClass(str(network.network_address))
